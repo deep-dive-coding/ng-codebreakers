@@ -1,0 +1,54 @@
+<!--This Application is using Bootstrap and ng-bootstrap to streamline the creation -->
+<div class="container">
+    <div class="row justify-content-md-center">
+    <div class="col">
+            <h1 class="h2 py-2">Code Breaker</h1>
+            <h2 class="h3 py-2">What is Code Breaker</h2>
+            <p>
+                Codebreaker is a simple game of deductive reasoning---a more generalized variant of the board game
+                Mastermind and the earlier pencil-and-paper game Bulls and Cows---implemented as a RESTful service that
+                permits client consumers to present the game to a user for play.
+            </p>
+            <h2 class="h3 py-2">Rules Of Play</h2>
+            <h3 class="h4 py-2">Players</h3>
+            <p>
+                There are 2 roles in the game: codemaker and codebreaker. In the pencil-and-paper and board game
+                variants, players typically alternate playing these roles; in this variant, the service is always the
+                codemaker, and the client is always the codebreaker
+            </p>
+            <h2 class="py-2">Sequence Of Play</h2>
+            <h3 class="h4 py-2">Start A New Game</h3>
+            <p>
+                A game begins when the codebreaker requests that a new code be generated, with the code length and pool
+                of characters specified in the request.
+            </p>
+            <p>
+                See the <a href="https://ddc.nickbenn.com/codebreaker/#post_code_endpoint">API documentation</a> for
+                more detailed information.
+            </p>
+            <h3 class="h4 py-2">Guessing The Code</h3>
+            <p>
+                The objective of the codebreaker in the game is to guess a secret code (generated randomly by the
+                codemaker, within parameters agreed on by both players), in as few guesses as possible.
+            </p>
+            <p>
+                Each guess consists of a string of characters (which must be of the same length as the code---that is,
+                the length specified when starting the game). When a guess is submitted, the response from the codemaker
+                consists of 2 numbers
+            </p>
+            <ul>
+                <li>
+                    <b>Exact Matches:</b> The number of characters in the code that are matched exactly by the
+                    characters in the corresponding positions of the guess.
+                </li>
+                <li>
+                    <b>Near matches:</b> The number of characters in the code that are not matched exactly by the
+                    guess, but that are matched by characters in the guess in non-corresponding positions.
+                </li>
+            </ul>
+           <h4 class="py-2"> End of play</h4>
+            <p>The game ends when the codebreaker successfully guesses the code.</p>
+
+        </div>
+    </div>
+</div>
