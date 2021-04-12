@@ -4,6 +4,7 @@ import {Component} from '@angular/core';
 
 //decorator that marks a class as an Angular Component
 @Component({
+	// url to the template containing the html (view) for this component.
 	templateUrl: './splash.component.html'
 })
 
