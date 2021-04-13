@@ -1,0 +1,23 @@
+<h1 class="h2">Is this thing on?</h1>
+<div class="container">
+    <div class="row">
+        <table class="table table-bordered table-fluid table-striped table-word-wrap">
+            <tr>
+                <th>Id</th>
+                <th> Date Created</th>
+                <th>Pool of Characters</th>
+                <th>Length</th>
+                <th>Guess Count</th>
+                <th>Solved?</th>
+            </tr>
+            <tr *ngFor="let code of codes">
+                <td>{{ code.id }}</td>
+                <td>{{ code.created | date }}</td>
+                <td>{{ code.pool}}</td>
+                <td>{{ code.length }}</td>
+                <td>{{code.guessCount}}</td>
+                <td>{{code.solved}}</td>
+            </tr>
+        </table>
+    </div>
+</div>

@@ -58,7 +58,7 @@ export class CodesService {
 		return (this.http.get<Codes>(`${this.codesUrlEndpoint}/${codeId}`))
 	}
 
-	public createMisquote(codes: Codes): Observable<Codes> {
+	public createCodes(codes: Codes): Observable<Codes> {
 		return (this.http.post<Codes>(this.codesUrlEndpoint, codes));
 	}
 
