@@ -35,6 +35,8 @@ export class CodesComponent implements OnInit {
 	}
 
 	createCode(): void {
+
+
 		const code: Codes = {
 			id: null,
 			created: null,
@@ -45,7 +47,7 @@ export class CodesComponent implements OnInit {
 			text: null,
 		}
 		this.codesService.createCodes(code).subscribe(response => {
-			alert(response)
+			console.log(response)
 		})
 	}
 }

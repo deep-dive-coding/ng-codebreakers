@@ -1,23 +1,74 @@
-<h1 class="h2">Is this thing on?</h1>
-<div class="container">
-    <div class="row">
-        <table class="table table-bordered table-fluid table-striped table-word-wrap">
-            <tr>
-                <th>Id</th>
-                <th> Date Created</th>
-                <th>Pool of Characters</th>
-                <th>Length</th>
-                <th>Guess Count</th>
-                <th>Solved?</th>
-            </tr>
-            <tr *ngFor="let code of codes">
-                <td>{{ code.id }}</td>
-                <td>{{ code.created | date }}</td>
-                <td>{{ code.pool}}</td>
-                <td>{{ code.length }}</td>
-                <td>{{code.guessCount}}</td>
-                <td>{{code.solved}}</td>
-            </tr>
-        </table>
+<main class="container">
+    <div class="row py-2">
+        <div class="col">
+            <h1>All The Codes</h1>
+        </div>
     </div>
-</div>
+    <div class="row py-2">
+        <div class="col">
+            <h2>Post Codes Form</h2>
+            <form (submit)="createCode()" [formGroup]="codesForm" class="py-2" novalidate>
+                <div class="form-group">
+                    <div class="input-group">
+                        <label class="sr-only" for="pool">Pool of Characters</label>
+                        <input class="form-control" formControlName="pool" id="pool" name="pool"
+                               placeholder="pool of characters" type="text">
+                    </div>
+                    <div
+                            *ngIf="codesForm.controls.pool?.invalid && codesForm.controls.pool?.touched"
+                            class="alert alert-danger"
+                            role="alert"
+                    >
+                        <span *ngIf="codesForm.controls.pool.errors?.required">a pool of characters is required</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <label class="sr-only" for="pool">Length of Code</label>
+                        <input class="form-control" formControlName="length" id="length" name="pool"
+                               placeholder="length of code" type="number">
+                    </div>
+                    <div
+                            *ngIf="codesForm.controls.length?.invalid && codesForm.controls.length?.touched"
+                            class="alert alert-danger"
+                            role="alert"
+                    >
+                        <span *ngIf="codesForm.controls.length.errors?.required">a length for this code is required</span>
+                    </div>
+                </div>
+                <div class="text-md-right">
+                    <button class="btn btn-primary" type="submit">post code</button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+    <div class="row py-2">
+        <div class="col">
+            <h2>All The Codes In a Table</h2>
+            <div class="table-responsive">
+
+
+                <table class="table table-bordered table-striped table-word-wrap">
+                    <tr>
+                        <th>Id</th>
+                        <th> Date Created</th>
+                        <th>Pool of Characters</th>
+                        <th>Length</th>
+                        <th>Guess Count</th>
+                        <th>Solved?</th>
+                    </tr>
+                    <tr *ngFor="let code of codes">
+                        <td>{{ code.id }}</td>
+                        <td>{{ code.created | date }}</td>
+                        <td>{{ code.pool}}</td>
+                        <td>{{ code.length }}</td>
+                        <td>{{code.guessCount}}</td>
+                        <td>{{code.solved}}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</main>
