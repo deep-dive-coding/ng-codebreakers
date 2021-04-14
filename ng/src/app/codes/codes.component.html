@@ -4,7 +4,7 @@
             <h1>All The Codes</h1>
         </div>
     </div>
-    <div class="row py-2">
+    <section class="row py-2">
         <div class="col">
             <h2>Post Codes Form</h2>
             <form (submit)="createCode()" [formGroup]="codesForm" class="py-2" novalidate>
@@ -43,8 +43,8 @@
             </form>
 
         </div>
-    </div>
-    <div class="row py-2">
+    </section>
+    <section class="row py-2">
         <div class="col">
             <h2>All The Codes In a Table</h2>
             <div class="table-responsive">
@@ -58,6 +58,7 @@
                         <th>Length</th>
                         <th>Guess Count</th>
                         <th>Solved?</th>
+                        <th>Detailed Information</th>
                     </tr>
                     <tr *ngFor="let code of codes">
                         <td>{{ code.id }}</td>
@@ -66,9 +67,14 @@
                         <td>{{ code.length }}</td>
                         <td>{{code.guessCount}}</td>
                         <td>{{code.solved}}</td>
+                        <td>
+                            <button (click)="navigateToDetailedView(code)" class="btn btn-primary">
+                                <span> Detailed Information</span>
+                            </button>
+                        </td>
                     </tr>
                 </table>
             </div>
         </div>
-    </div>
+    </section>
 </main>

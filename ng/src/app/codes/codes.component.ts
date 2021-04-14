@@ -3,6 +3,7 @@ import {Component, OnInit} from '@angular/core';
 import {Codes} from '../shared/classes/Codes';
 import {CodesService} from '../shared/services/codes.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
 
 
 //decorator that marks a class as an Angular Component
@@ -16,7 +17,7 @@ export class CodesComponent implements OnInit {
 	public codes: Codes[] = [];
 	public codesForm: FormGroup;
 
-	constructor(private codesService: CodesService, private formBuilder: FormBuilder) {
+	constructor(private codesService: CodesService, private formBuilder: FormBuilder, private router: Router) {
 		this.codesForm = this.formBuilder.group({
 			pool: ['', [Validators.required]],
 			length: ['', [Validators.required]]
@@ -34,8 +35,15 @@ export class CodesComponent implements OnInit {
 		})
 	}
 
-	createCode(): void {
+	navigateToDetailedView(code: Codes): void {
+		this.router.navigate(['/guesses/', code.id]).catch(error => {
+			console.error(error)
+		})
 
+
+	}
+
+	createCode(): void {
 
 		const code: Codes = {
 			id: null,
@@ -47,7 +55,7 @@ export class CodesComponent implements OnInit {
 			text: null,
 		}
 		this.codesService.createCodes(code).subscribe(response => {
-			console.log(response)
+			this.loadAllCodes()
 		})
 	}
 }
