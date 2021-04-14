@@ -36,8 +36,8 @@ export class GuessesService {
 	 *  @return Observable<Guesses[]> an observable that contains the code returned by the server that matches primary key provided
 	 **/
 
-	public getGuessByCodeId(codeId: string): Observable<Guesses> {
-		return (this.http.get<Guesses>(`${this.partialGuessesUrlEndpoint}/${codeId}/guesses`))
+	public getGuessByCodeId(codeId: string): Observable<Guesses[]> {
+		return (this.http.get<Guesses[]>(`${this.partialGuessesUrlEndpoint}/${codeId}/guesses`))
 	}
 
 	/**
