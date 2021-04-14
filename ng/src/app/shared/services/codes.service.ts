@@ -58,6 +58,11 @@ export class CodesService {
 		return (this.http.get<Codes>(`${this.codesUrlEndpoint}/${codeId}`))
 	}
 
+	/**
+	 * simple method that interacts with the codes endpoint to post a new code
+	 * @param codes Codes partial code containing the pool of characters and length for the new code created by the server.
+	 * @return Observable<Codes> an observable that contains the code created by the server.
+	 **/
 	public createCodes(codes: Codes): Observable<Codes> {
 		return (this.http.post<Codes>(this.codesUrlEndpoint, codes));
 	}
