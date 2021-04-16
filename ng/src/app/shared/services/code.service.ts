@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {Codes} from '../classes/Codes';
+import {Code} from '../classes/Code';
 
 // Decorator that denotes a class can be used through dependency injection in a component.
 @Injectable({providedIn: 'root'})
@@ -13,7 +13,7 @@ import {Codes} from '../classes/Codes';
  *
  * @documentation https://angular.io/guide/dependency-injection
  **/
-export class CodesService {
+export class CodeService {
 
 	/**
 	 * url endpoint this service is going to be interacting with
@@ -32,39 +32,39 @@ export class CodesService {
 	/**
 	 * Simple method that interacts with the codes endpoint to grab all of the codes ever created on the service
 	 *
-	 * @return Observable<Codes[]> an observable that contains an array of all the codes returned from the server
+	 * @return Observable<Code[]> an observable that contains an array of all the codes returned from the server
 	 **/
-	public getAllCodes(): Observable<Codes[]> {
-		return (this.http.get<Codes[]>(this.codesUrlEndpoint))
+	public getAllCodes(): Observable<Code[]> {
+		return (this.http.get<Code[]>(this.codesUrlEndpoint))
 	}
 
 	/**
 	 * simple method that interacts with the codes endpoint to grab all unsolved codes
 	 *
-	 *  * @return Observable<Codes[]> an observable that contains an array of all unresolved codes returned from the server
+	 *  * @return Observable<Code[]> an observable that contains an array of all unresolved codes returned from the server
 	 **/
 
-	public getAllUnresolvedCodes(): Observable<Codes[]> {
-		return (this.http.get<Codes[]>(`${this.codesUrlEndpoint}?status=UNRESOLVED`))
+	public getAllUnresolvedCodes(): Observable<Code[]> {
+		return (this.http.get<Code[]>(`${this.codesUrlEndpoint}?status=UNSOLVED`))
 	}
 
 	/**
 	 * simple method that interacts with the codes endpoint to grab a code by its primary key
 	 *
-	 *  @return Observable<Codes[]> an observable that contains the code returned by the server that matches primary key provided
+	 *  @return Observable<Code[]> an observable that contains the code returned by the server that matches primary key provided
 	 **/
 
-	public getCodeByCodeId(codeId: string): Observable<Codes> {
-		return (this.http.get<Codes>(`${this.codesUrlEndpoint}/${codeId}`))
+	public getCodeByCodeId(codeId: string): Observable<Code> {
+		return (this.http.get<Code>(`${this.codesUrlEndpoint}/${codeId}`))
 	}
 
 	/**
 	 * simple method that interacts with the codes endpoint to post a new code
-	 * @param codes Codes partial code containing the pool of characters and length for the new code created by the server.
-	 * @return Observable<Codes> an observable that contains the code created by the server.
+	 * @param code Code partial code containing the pool of characters and length for the new code created by the server.
+	 * @return Observable<Code> an observable that contains the code created by the server.
 	 **/
-	public createCodes(codes: Codes): Observable<Codes> {
-		return (this.http.post<Codes>(this.codesUrlEndpoint, codes));
+	public createCode(code: Code): Observable<Code> {
+		return (this.http.post<Code>(this.codesUrlEndpoint, code));
 	}
 
 }

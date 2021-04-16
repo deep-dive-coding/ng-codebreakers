@@ -1,4 +1,4 @@
-export interface Guesses {
+export interface Guess {
 	id: string | null,
 	created: string | null,
 	text: string,

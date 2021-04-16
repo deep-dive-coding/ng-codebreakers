@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
   //creates a custom html tag for this component that can be injected into other templates/components.
@@ -10,7 +10,7 @@ import { Component } from '@angular/core';
         <small class="d-none d-md-inline-block text-muted mr-auto"><em>Angularific Demo Involving Code Breaking</em></small>
         <ul class="nav justify-content-end">
           <li class="nav-item">
-            <button routerLink="/posts" class="btn btn-primary">posts</button>
+            <button routerLink="/codes" class="btn btn-primary">codes</button>
           </li>
         </ul>
       </nav>

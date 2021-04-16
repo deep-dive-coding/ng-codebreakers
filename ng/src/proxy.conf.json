@@ -1,7 +1,7 @@
 {
   "/codebreaker": {
-    "target": "https://ddc.nickbenn.com/",
-    "secure": "true",
+    "target": "https://ddc-java.services/",
+    "secure": true,
     "changeOrigin": true
   }
 }

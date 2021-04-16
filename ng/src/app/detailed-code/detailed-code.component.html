@@ -4,30 +4,34 @@
                 *ngIf="code !== null"
                 class="col "
         >
-            <h1 class="py-2 align-content-center">Detailed Card Info for code : {{code.id}}</h1>
-            <div class="card py-2 ">
+            <h1 class="py-2 align-content-center">Detailed Card Info for Code : {{code.id}}</h1>
+            <div class="card">
 
                 <div class="card-body">
                     <h2 class=" card-title">Code Solved? {{code.solved}}</h2>
                     <p class="card-text">length: {{code.length}}</p>
                     <p class="card-text">pool: {{code.pool}}</p>
                     <p *ngIf="code.solved === true" class="card-text">solution: {{code.text}}</p>
-                </div>
-                <h3 class="card-subtitle mb-2 text-muted">List of All Guesses</h3>
-                <ul class="list-group list-group-flush">
+                    <h3 class="card-subtitle mb-2 text-muted">List of All Guesses</h3>
+                    <ul class="list-group list-group-flush">
 
-                    <li *ngFor="let guess of allGuesses" class="list-group-item">
-                        text: {{guess.text}}, Exact Matches: {{guess.exactMatches}}, Near Matches: {{guess.nearMatches}}
-                    </li>
-                </ul>
+                        <li *ngFor="let guess of allGuesses" class="list-group-item">
+                            text: {{guess.text}}, Exact Matches: {{guess.exactMatches}}, Near
+                            Matches: {{guess.nearMatches}}
+                        </li>
+                    </ul>
+
+                </div>
+
                 <div class="card-footer">
                     <h3 class="card-subtitle mb-2 text-muted">Submit A Guess</h3>
-                    <form (submit)="createGuess(code.id)" [formGroup]="guessForm" class="py-2" novalidate>
+                    <form (submit)="createGuess(code.id)" *ngIf="code.solved !== true;" [formGroup]="guessForm"
+                          class="py-2" novalidate>
                         <div class="form-group">
                             <div class="input-group">
-                                <label class="sr-only" for="pool">Pool of Characters</label>
-                                <input class="form-control" formControlName="pool" id="pool" name="pool"
-                                       placeholder="pool of characters" type="text">
+                                <label class="sr-only" for="guess">Guess The Code</label>
+                                <input class="form-control" formControlName="guess" id="guess" name="guess"
+                                       placeholder="guess the code" type="text">
                             </div>
                             <div
                                     *ngIf="guessForm.controls.guess?.invalid && guessForm.controls.guess?.touched"
@@ -41,9 +45,10 @@
                         <div class="text-md-right">
                             <button class="btn btn-primary" type="submit">post guess</button>
                         </div>
-
                     </form>
-
+                    <div *ngIf="code.solved === true" class="text-muted">
+                        <h4>Code Solved</h4>
+                    </div>
                 </div>
             </div>
         </div>

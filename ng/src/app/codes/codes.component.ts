@@ -1,7 +1,7 @@
 //Import is how code is shared across different files in javascript/typescript
 import {Component, OnInit} from '@angular/core';
-import {Codes} from '../shared/classes/Codes';
-import {CodesService} from '../shared/services/codes.service';
+import {Code} from '../shared/classes/Code';
+import {CodeService} from '../shared/services/code.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 
@@ -14,11 +14,11 @@ import {Router} from '@angular/router';
 
 
 export class CodesComponent implements OnInit {
-	public codes: Codes[] = [];
-	public codesForm: FormGroup;
+	public codes: Code[] = [];
+	public codeForm: FormGroup;
 
-	constructor(private codesService: CodesService, private formBuilder: FormBuilder, private router: Router) {
-		this.codesForm = this.formBuilder.group({
+	constructor(private codesService: CodeService, private formBuilder: FormBuilder, private router: Router) {
+		this.codeForm = this.formBuilder.group({
 			pool: ['', [Validators.required]],
 			length: ['', [Validators.required]]
 
@@ -35,8 +35,8 @@ export class CodesComponent implements OnInit {
 		})
 	}
 
-	navigateToDetailedView(code: Codes): void {
-		this.router.navigate(['/guesses/', code.id]).catch(error => {
+	navigateToDetailedView(code: Code): void {
+		this.router.navigate(['/detailed-code/', code.id]).catch(error => {
 			console.error(error)
 		})
 
@@ -45,17 +45,19 @@ export class CodesComponent implements OnInit {
 
 	createCode(): void {
 
-		const code: Codes = {
+		const code: Code = {
 			id: null,
 			created: null,
-			pool: this.codesForm.value.pool,
-			length: this.codesForm.value.length,
+			pool: this.codeForm.value.pool,
+			length: this.codeForm.value.length,
 			guessCount: null,
 			solved: null,
 			text: null,
 		}
-		this.codesService.createCodes(code).subscribe(response => {
+		this.codesService.createCode(code).subscribe(response => {
+			this.codeForm.reset()
 			this.loadAllCodes()
+			this.navigateToDetailedView(response)
 		})
 	}
 }

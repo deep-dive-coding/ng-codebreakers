@@ -6,8 +6,8 @@
     </div>
     <section class="row py-2">
         <div class="col">
-            <h2>Post Codes Form</h2>
-            <form (submit)="createCode()" [formGroup]="codesForm" class="py-2" novalidate>
+            <h2>Post Code Form</h2>
+            <form (submit)="createCode()" [formGroup]="codeForm" class="py-2" novalidate>
                 <div class="form-group">
                     <div class="input-group">
                         <label class="sr-only" for="pool">Pool of Characters</label>
@@ -15,11 +15,11 @@
                                placeholder="pool of characters" type="text">
                     </div>
                     <div
-                            *ngIf="codesForm.controls.pool?.invalid && codesForm.controls.pool?.touched"
+                            *ngIf="codeForm.controls.pool?.invalid && codeForm.controls.pool?.touched"
                             class="alert alert-danger"
                             role="alert"
                     >
-                        <span *ngIf="codesForm.controls.pool.errors?.required">a pool of characters is required</span>
+                        <span *ngIf="codeForm.controls.pool.errors?.required">a pool of characters is required</span>
                     </div>
                 </div>
                 <div class="form-group">
@@ -29,11 +29,11 @@
                                placeholder="length of code" type="number">
                     </div>
                     <div
-                            *ngIf="codesForm.controls.length?.invalid && codesForm.controls.length?.touched"
+                            *ngIf="codeForm.controls.length?.invalid && codeForm.controls.length?.touched"
                             class="alert alert-danger"
                             role="alert"
                     >
-                        <span *ngIf="codesForm.controls.length.errors?.required">a length for this code is required</span>
+                        <span *ngIf="codeForm.controls.length.errors?.required">a length for this code is required</span>
                     </div>
                 </div>
                 <div class="text-md-right">
@@ -62,14 +62,14 @@
                     </tr>
                     <tr *ngFor="let code of codes">
                         <td>{{ code.id }}</td>
-                        <td>{{ code.created | date }}</td>
+                        <td>{{ code.created | date:'short'}}</td>
                         <td>{{ code.pool}}</td>
                         <td>{{ code.length }}</td>
                         <td>{{code.guessCount}}</td>
                         <td>{{code.solved}}</td>
                         <td>
                             <button (click)="navigateToDetailedView(code)" class="btn btn-primary">
-                                <span> Detailed Information</span>
+                                <span>Detailed Information</span>
                             </button>
                         </td>
                     </tr>
