@@ -25,8 +25,13 @@
 
                 <div class="card-footer">
                     <h3 class="card-subtitle mb-2 text-muted">Submit A Guess</h3>
-                    <form (submit)="createGuess(code.id)" *ngIf="code.solved !== true;" [formGroup]="guessForm"
-                          class="py-2" novalidate>
+                    <form
+                            (submit)="createGuess(code.id)"
+                            *ngIf="code.solved !== true;"
+                            [formGroup]="guessForm"
+                            class="py-2"
+                            novalidate
+                    >
                         <div class="form-group">
                             <div class="input-group">
                                 <label class="sr-only" for="guess">Guess The Code</label>
@@ -39,11 +44,21 @@
                                     role="alert"
                             >
                                 <span *ngIf="guessForm.controls.guess.errors?.required">a guess is required</span>
+                                <span *ngIf="guessForm.controls.guess.errors?.minlength">
+                                    Guess is not long enough please add {{guessForm.controls.guess.errors?.minlength.requiredLength - guessForm.controls.guess.errors?.minlength.actualLength}}
+                                    more characters
+                                </span>
+                                <span *ngIf="guessForm.controls.guess.errors?.minlength">
+                                    Guess is to long enough please remove{{guessForm.controls.guess.errors?.minlength.actualLength - guessForm.controls.guess.errors?.minlength.requiredLength }}
+                                    characters
+                                </span>
                             </div>
+
                         </div>
 
                         <div class="text-md-right">
-                            <button class="btn btn-primary" type="submit">post guess</button>
+                            <button [disabled]="!guessForm.valid" class="btn btn-primary" type="submit">post guess
+                            </button>
                         </div>
                     </form>
                     <div *ngIf="code.solved === true" class="text-muted">

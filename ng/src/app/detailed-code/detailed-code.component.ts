@@ -33,10 +33,21 @@ export class DetailedCodeComponent implements OnInit {
 		this.setAllGuesses(this.codeId)
 	}
 
+	updateFormValidation(length: number): void {
+		const minLengthValidator = Validators.minLength(length);
+		const maxLengthValidator = Validators.maxLength(length);
+		this.guessForm.controls['guess'].setValidators([Validators.required, minLengthValidator, maxLengthValidator]);
+		this.guessForm.controls['guess'].updateValueAndValidity();
+
+	}
+
 	setCode(codeId: string): void {
 		this.codesService.getCodeByCodeId(codeId).subscribe(response => {
-			this.code = response
+			this.code = response;
+			this.updateFormValidation(response.length);
+
 		})
+
 	}
 
 	createGuess(codeId: string | null): void {
@@ -50,6 +61,7 @@ export class DetailedCodeComponent implements OnInit {
 
 		this.guessService.createGuess(<string>codeId, guess).subscribe(response => {
 			this.previousGuess = response
+			this.setAllGuesses(this.codeId)
 		})
 
 	}
