@@ -4,5 +4,6 @@ export interface Guess {
 	text: string,
 	exactMatches: Number | null,
 	nearMatches: Number | null,
+	solution: boolean
 }
 

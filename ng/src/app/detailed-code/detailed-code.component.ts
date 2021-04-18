@@ -56,14 +56,17 @@ export class DetailedCodeComponent implements OnInit {
 			created: null,
 			text: this.guessForm.value.guess,
 			exactMatches: null,
-			nearMatches: null
+			nearMatches: null,
+			solution: false
 		}
 
 		this.guessService.createGuess(<string>codeId, guess).subscribe(response => {
 			this.previousGuess = response
 			this.setAllGuesses(this.codeId)
+			if (response.solution === true) {
+				this.setCode(this.codeId)
+			}
 		})
-
 	}
 
 	setAllGuesses(codeId: string | null): void {
