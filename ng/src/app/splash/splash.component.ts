@@ -9,4 +9,7 @@ import {Component} from '@angular/core';
 })
 
 //Export makes variables, functions and classes sharable via import across different files.
+/**
+ * Main component for the splash/home view.
+ */
 export class SplashComponent{}

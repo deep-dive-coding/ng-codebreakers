@@ -18,4 +18,7 @@ import {Component} from '@angular/core';
     <router-outlet></router-outlet>
   `,
 })
+/**
+ * Main app component that is the entry point for angular router
+ */
 export class AppComponent {}

@@ -12,7 +12,9 @@ import {Router} from '@angular/router';
 	templateUrl: './codes.component.html'
 })
 
-
+/*
+* Main component for the codes view
+ */
 export class CodesComponent implements OnInit {
 	/**
 	 * State variable containing all of the codes returned by the server
